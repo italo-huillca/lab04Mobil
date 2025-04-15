@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.huillca.lab04"
+    namespace = "com.example.explorandocomponentesjetpack"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.huillca.lab04"
+        applicationId = "com.example.explorandocomponentesjetpack"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,6 +49,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("androidx.compose.material:material:1.6.0")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.30.1")
+    implementation("androidx.compose.material3:material3:1.2.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,3 +63,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
