@@ -97,6 +97,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.*
@@ -154,10 +155,39 @@ fun CardDemo() {
         }
     }
 }
+@Composable
+fun BottomNavigationDemo() {
+    var selectedIndex by remember { mutableStateOf(0) }
+    val items = listOf("Inicio", "Buscar", "Perfil")
+
+    Scaffold(
+        bottomBar = {
+            BottomNavigation {
+                items.forEachIndexed { index, item ->
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Default.Home, contentDescription = item) },
+                        label = { Text(item) },
+                        selected = selectedIndex == index,
+                        onClick = { selectedIndex = index }
+                    )
+                }
+            }
+        },
+        content = { padding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Sección: ${items[selectedIndex]}")
+            }
+        }
+    )
+}
 
 @Preview(showBackground = true)
 @Composable
-
 fun MostrarPreview() {
-    CardDemo()
+    BottomNavigationDemo()
 }
