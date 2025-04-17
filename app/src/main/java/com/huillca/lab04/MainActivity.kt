@@ -159,16 +159,33 @@ fun CardDemo() {
 fun BottomNavigationDemo() {
     var selectedIndex by remember { mutableStateOf(0) }
     val items = listOf("Inicio", "Buscar", "Perfil")
+    val icons = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Person)
 
     Scaffold(
         bottomBar = {
-            BottomNavigation {
+            BottomNavigation(
+                backgroundColor = Color(0xFF1976D2), // Azul intenso
+                contentColor = Color.White,
+                elevation = 10.dp
+            ) {
                 items.forEachIndexed { index, item ->
                     BottomNavigationItem(
-                        icon = { Icon(Icons.Default.Home, contentDescription = item) },
-                        label = { Text(item) },
+                        icon = {
+                            Icon(
+                                imageVector = icons[index],
+                                contentDescription = item
+                            )
+                        },
+                        label = {
+                            Text(
+                                text = item,
+                                style = MaterialTheme.typography.labelMedium
+                            )
+                        },
                         selected = selectedIndex == index,
-                        onClick = { selectedIndex = index }
+                        onClick = { selectedIndex = index },
+                        selectedContentColor = Color.White,
+                        unselectedContentColor = Color.White.copy(alpha = 0.5f)
                     )
                 }
             }
@@ -180,7 +197,12 @@ fun BottomNavigationDemo() {
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Sección: ${items[selectedIndex]}")
+                Text(
+                    text = "Sección: ${items[selectedIndex]}",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontWeight = FontWeight.SemiBold
+                    )
+                )
             }
         }
     )
