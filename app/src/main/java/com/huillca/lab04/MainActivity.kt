@@ -128,17 +128,33 @@ fun GridDemo() {
         items(10) { index ->
             Card(
                 modifier = Modifier
-                    .padding(4.dp)
-                    .fillMaxWidth(),
-                elevation = CardDefaults.cardElevation(4.dp)
+                    .padding(6.dp)
+                    .fillMaxWidth()
+                    .height(120.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = if (index % 2 == 0) Color(0xFFE3F2FD) else Color(0xFFFFF9C4)
+                ),
+                elevation = CardDefaults.cardElevation(6.dp),
+                shape = RoundedCornerShape(16.dp)
             ) {
-                Box(modifier = Modifier.padding(16.dp)) {
-                    Text("Item $index")
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Item $index",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF333333)
+                    )
                 }
             }
         }
     }
 }
+
 @Composable
 fun CardDemo() {
     Card(
